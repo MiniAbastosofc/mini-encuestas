@@ -1,11 +1,18 @@
 # Habilitar la reescritura de URLs
 RewriteEngine On
 
+# Asegúrate de que las rutas para los archivos estáticos como JS y CSS se sirvan correctamente
+RewriteRule ^mini-encuestas/assets/.*$ - [L]
+
 # Si la ruta solicitada no corresponde a un archivo físico existente
 RewriteCond %{REQUEST_FILENAME} !-f
 # Si la ruta solicitada no corresponde a un directorio físico existente
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Redirige todas las solicitudes a index.html para que React Router se encargue de la navegación
-# Asegúrate de incluir el subdirectorio '/mini-encuestas/' en la regla de reescritura
-RewriteRule ^(?!mini-encuestas).*$ /mini-encuestas/index.html [L]
+# Redirige todas las solicitudes que no sean a archivos estáticos dentro de mini-encuestas
+# a index.html para que React Router se encargue de la navegación (esto incluye rutas dinámicas)
+RewriteRule ^mini-encuestas/.*$ /mini-encuestas/index.html [L]
+
+# Asegúrate de que los archivos estáticos (js, css, etc.) se sirvan correctamente
+AddType application/javascript .js
+AddType text/css .css
