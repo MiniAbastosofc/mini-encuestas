@@ -1,0 +1,11 @@
+# Habilitar la reescritura de URLs
+RewriteEngine On
+
+# Si la ruta solicitada no corresponde a un archivo físico existente
+RewriteCond %{REQUEST_FILENAME} !-f
+# Si la ruta solicitada no corresponde a un directorio físico existente
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirige todas las solicitudes a index.html para que React Router se encargue de la navegación
+# Asegúrate de incluir el subdirectorio '/mini-encuestas/' en la regla de reescritura
+RewriteRule ^(?!mini-encuestas).*$ /mini-encuestas/index.html [L]
