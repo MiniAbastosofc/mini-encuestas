@@ -1,8 +1,16 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /mini-encuestas/
+
+  # Evita redirigir index.html
   RewriteRule ^index\.html$ - [L]
+
+  # Si la solicitud no es para un archivo o directorio físico, redirige a index.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /mini-encuestas/index.html [L]
 </IfModule>
+
+# Configuración para asegurarse de que los archivos JavaScript y JSON sean servidos correctamente
+AddType application/javascript .js
+AddType application/json .json
