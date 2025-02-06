@@ -11,6 +11,7 @@
   RewriteRule . /mini-encuestas/index.html [L]
 </IfModule>
 
-# Configuración para asegurarse de que los archivos JavaScript y JSON sean servidos correctamente
+# Configuración para asegurarse de que los archivos JavaScript y CSS sean servidos correctamente
 AddType application/javascript .js
 AddType application/json .json
+AddType text/css .css
